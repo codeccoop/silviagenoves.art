@@ -1,0 +1,39 @@
+/*
+ Theme Name:   silviagenoves.art
+ Theme URI:    http://www.silviagenoves.art
+ Description:  Personalización de la plantilla Eksell para la web de Silvia Genovés
+ Author:       Orzo Cogorzo
+ Author URI:   https://github.com/orzocogorzo
+ Template:     eksell
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+
+:root {
+	/* Typography */
+	--eksell-body-font: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+	--eksell-headings-font: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
+	--eksell-headings-weight: 700;
+	/* Colors */
+	--eksell-accent-color: #d23c50;
+	--eksell-primary-color: #1e2d32;
+	--eksell-secondary-color: #707376;
+	--eksell-border-color: #d6d5d4;
+	--eksell-light-background-color: #ffffff;
+	--eksell-background-color: #fff;
+	--eksell-menu-modal-background-color: #1e2d32;
+	--eksell-menu-modal-text-color: #fff;
+	/* Layout */
+	--eksell-inner-width-thin: 65.2rem;
+	--eksell-inner-width-small: 76rem;
+	--eksell-inner-width-medium: 104rem;
+	--eksell-inner-width-max: 205.2rem;
+	--eksell-inner-gutter: 4.8rem;
+	--eksell-aside-width: 4.4rem;
+}
+
+header.preview-header {
+    display: none;
+}
