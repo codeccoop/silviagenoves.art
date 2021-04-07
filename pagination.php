@@ -24,11 +24,9 @@ if ( ! array_key_exists( 'paged', $query_args ) || 0 == $query_args['paged'] ) {
 }
 
 $query_args["order"] = "ASC";
-echo print_r($query_args);
 
 // Encode our modified query.
 $json_query_args = wp_json_encode($query_args);
-echo $json_query_args;
 
 // Set up the wrapper class.
 $wrapper_class = 'pagination-type-' . $pagination_type;

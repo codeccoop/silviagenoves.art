@@ -17,6 +17,7 @@ add_action("pre_get_posts", "silvia_genoves_sort_reversed");
 function silvia_genoves_sort_reversed ($query) {
     if ($query->is_home() && $query->is_main_query()) {
         $query->set("order", "ASC");
+        $query->set("category_name", "Fotografía");
     }
 }
 
@@ -93,4 +94,45 @@ function eksell_the_archive_filter () {
 	</div>
 <?php
 }
+
+function eksell_ajax_filters () {
+
+	// Get the filters from AJAX.
+	$term_id = isset($_POST["term_id"]) ? $_POST["term_id"] : null;
+	$taxonomy = isset($_POST["taxonomy"]) ? $_POST["taxonomy"] : "";
+	$post_type = isset($_POST["post_type"]) ? $_POST["post_type"] : "";
+
+	$args = array(
+		"ignore_sticky_posts" => false,
+		"post_status" => "publish",
+		"post_type" => $post_type,
+        "order" => "ASC"
+	);
+
+	if ($term_id && $taxonomy) {
+		$args["tax_query"] = array(array(
+			"taxonomy"=> $taxonomy,
+			"terms" => $term_id
+		));
+	}
+
+	$custom_query = new WP_Query($args);
+
+	// Combine the query with the query_vars into a single array.
+	$query_args = array_merge($custom_query->query, $custom_query->query_vars);
+
+	// If max_num_pages is not already set, add it.
+	if (!array_key_exists("max_num_pages", $query_args)) {
+		$query_args["max_num_pages"] = $custom_query->max_num_pages;
+	}
+
+	// Format and return.
+	echo json_encode( $query_args );
+
+	wp_die();
+}
+
+add_action("wp_ajax_nopriv_eksell_ajax_filters", "eksell_ajax_filters");
+add_action("wp_ajax_eksell_ajax_filters", "eksell_ajax_filters");
+
 ?>
