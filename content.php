@@ -42,10 +42,12 @@
 
 			<?php 
 			do_action( 'eksell_featured_media_start', $post->ID );
+			$category = get_the_category($post->ID)[0];
 			?>
 
 			<div class="media-wrapper">
-				<div class="media-close-btn" >X</div>
+				<div class="media-close-btn">
+					<a href="<?php echo esc_url(get_category_link($category)); ?>">X</a></div>
 				<?php the_post_thumbnail(); ?>
 			</div><!-- .media-wrapper -->
 

@@ -10,6 +10,28 @@
  License URI:  http://www.gnu.org/licenses/gpl-2.0.html
 */
 
+.cols-tl-1 > .col.col-span-2 { width: calc( 8.3333% * 2 ); }
+.cols-tl-1 > .col.col-span-3 { width: calc( 8.3333% * 3 ); }
+.cols-tl-1 > .col.col-span-4 { width: calc( 8.3333% * 4 ); }
+.cols-tl-2 > .col.col-span-2 { width: calc( 8.3333% * 4 ); }
+.cols-tl-2 > .col.col-span-3 { width: calc( 8.3333% * 6 ); }
+.cols-tl-2 > .col.col-span-4 { width: calc( 8.3333% * 8 ); }
+.cols-tl-3 > .col.col-span-2 { width: calc( 8.3333% * 6 ); }
+.cols-tl-3 > .col.col-span-3 { width: calc( 8.3333% * 9 ); }
+.cols-tl-3 > .col.col-span-4 { width: calc( 8.3333% * 12 ); }
+.cols-tl-4 > .col.col-span-2 { width: calc( 8.3333% * 8 ); }
+.cols-tl-4 > .col.col-span-3 { width: calc( 8.3333% * 12 ); }
+.cols-tl-4 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
+.cols-tl-5 > .col.col-span-2 { width: calc( 8.3333% * 10 ); }
+.cols-tl-5 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
+.cols-tl-6 > .col.col-span-2 { width: calc( 8.3333% * 12 ); }
+.cols-tl-6 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
+.cols-tl-7 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
+.cols-tl-8 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
+.cols-tl-9 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
+.cols-tl-10 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
+.cols-tl-11 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
+.cols-tl-12 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 
 :root {
 	/* Colors */
@@ -18,7 +40,7 @@
 	--eksell-menu-modal-text-color: var(--eksell-primary-color);
 	/* Layout */
 	--eksell-aside-width: 200px;
-        --eksell-inner-width-thin: 85rem;
+        --eksell-inner-width-thin: 75rem;
   	/* Custom */
   	--sg-sticky-filters-height: 125px;
   	--sg-portrait-header-height: 85px;
@@ -76,18 +98,32 @@ header.preview-header {
 }
 
 #site-aside .site-aside-menu .main-menu {
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
-#site-aside .main-menu .menu-item::before,
-#site-aside .main-menu .menu-item::after {
+#site-aside .site-aside-menu .nested-menu {
+	padding-left: 1.5rem;
+	font-size: .95em;
+}
+
+#site-aside .site-aside-menu .nested-menu .page_item_nested a {
+	font-weight: normal;	
+}
+
+#site-aside .site-aside-menu .nested-menu .page_item_nested.current_page_item a {
+	font-weight: bold;
+}
+
+#site-aside .main-menu .page_item::before,
+#site-aside .main-menu .page_item::after {
     display: none;
 }
 
-#site-aside .main-menu .menu-item a {
-    padding: 1rem 0;
+#site-aside .main-menu .page_item a {
+    padding: .8rem 0;
     color: var(--eksell-primary-color);
     text-decoration: none;
+    font-size: 1.7rem;
 }
 
 #site-aside .main-menu .current_page_item a {
@@ -184,8 +220,13 @@ body.admin-bar header.archive-header {
 }
 
 /* posts */
+#site-content .archive-header {
+	display: none;
+}
+
 #site-content .posts {
-    margin-top: var(--sg-sticky-filters-height);
+    /* margin-top: var(--sg-sticky-filters-height); */
+	margin-top: 3.4rem;
 }
 
 @media only screen and (max-width: 700px) and (orientation: portrait) {
@@ -214,10 +255,15 @@ body.admin-bar header.archive-header {
     right: 2rem;
     font-size: 3rem;
     z-index: 10;
-    color: white;
     text-shadow: 1px 1px 7px #000;
     transition: text-shadow 200ms ease-in-out;
     cursor: pointer;
+}
+
+.media-wrapper .media-close-btn a {
+	text-decoration: none;
+	text-underline-offset: none;
+    	color: white;
 }
 
 .media-wrapper .media-close-btn:hover {
@@ -234,6 +280,12 @@ body.admin-bar header.archive-header {
 
 .single-nav header.single-nav-item-header {
 	display: none;
+}
+
+.single-nav .prev-post .arrow,
+.single-nav .next-post .arrow {
+	bottom: unset;
+	top: unset;
 }
 
 header.entry-header hr.color-accent {

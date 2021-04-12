@@ -1,0 +1,34 @@
+	function eksell_ajax_load_more() {
+
+		$query_args = json_decode( wp_unslash( $_POST['json_data'] ), true );
+
+		$ajax_query = new WP_Query( $query_args );
+
+		// Determine which preview to use based on the post_type.
+		$post_type = $ajax_query->get( 'post_type' );
+
+		// Default to the "post" post type for mixed content.
+		if ( ! $post_type || is_array( $post_type ) ) {
+			$post_type = 'post';
+		}
+
+		if ( $ajax_query->have_posts() ) :
+			while ( $ajax_query->have_posts() ) : 
+				$ajax_query->the_post();
+
+				global $post;
+				?>
+
+				<div class="article-wrapper col">
+					<?php get_template_part( 'inc/parts/preview', $post_type ); ?>
+				</div>
+
+				<?php 
+			endwhile;
+		endif;
+
+		wp_die();
+
+	}
+	add_action( 'wp_ajax_nopriv_eksell_ajax_load_more', 'eksell_ajax_load_more' );
+	add_action( 'wp_ajax_eksell_ajax_load_more', 'eksell_ajax_load_more' );

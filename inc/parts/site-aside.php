@@ -41,7 +41,7 @@ if (is_front_page() && is_home() && !is_paged()) : ?>
 <div class="site-aside-menu">
     <ul class="main-menu reset-list-style">
 <?php
-    if (has_nav_menu("main")) {
+    /* if (has_nav_menu("main")) {
         wp_nav_menu(array(
             "container" => "",
             "items_wrap" => '%3$s',
@@ -49,12 +49,13 @@ if (is_front_page() && is_home() && !is_paged()) : ?>
             "theme_location" => "main",
             "menu_class" => "main-menu reset-list-style"
         ));
-     } else {
+		} else { */
+	sg_aside_filters();
         wp_list_pages(array(
             "match_menu_classes" => true,
             "title_li" => false
         ));
-      }
+      # }
 ?>
     </ul>
 </div>
