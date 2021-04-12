@@ -13,8 +13,6 @@
 
 :root {
 	/* Typography */
-	--eksell-body-font: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
-	--eksell-headings-font: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, sans-serif;
 	--eksell-headings-weight: 700;
 	/* Colors */
 	--eksell-accent-color: #d23c50;
@@ -26,15 +24,10 @@
 	--eksell-menu-modal-background-color: #ffffff;
 	--eksell-menu-modal-text-color: var(--eksell-primary-color);
 	/* Layout */
-	--eksell-inner-width-thin: 65.2rem;
-	--eksell-inner-width-small: 76rem;
-	--eksell-inner-width-medium: 104rem;
-	--eksell-inner-width-max: 205.2rem;
-	--eksell-inner-gutter: 4.8rem;
 	--eksell-aside-width: 200px;
-  /* Custom */
-  --sg-sticky-filters-height: 125px;
-  --sg-portrait-header-height: 85px;
+  	/* Custom */
+  	--sg-sticky-filters-height: 125px;
+  	--sg-portrait-header-height: 85px;
 }
 
 @media only screen and (max-width: 700px) and (orientation: portrait) {
@@ -48,6 +41,16 @@ header.preview-header {
     display: none;
 }
 
+.site-content-inner {
+	padding-top: 100px;
+}
+
+
+@media only screen and (max-width: 700px) and (orientation: portrait) {
+	.site-content-inner {
+		padding-top: initial;
+	}
+}
 
 /* #site-header */
 #site-header {
@@ -57,6 +60,7 @@ header.preview-header {
 @media only screen and (max-width: 700px) and (orientation: portrait) {
     #site-header {
         display: flex;
+	margin-bottom: 0px;
     }
 }
 
@@ -107,6 +111,15 @@ header.archive-header {
     background-color: var(--eksell-background-color);
     padding: 4.8rem 2.4rem;
     box-shadow: 0px 2px 2px 0px #fdfdfd;
+    width: 100%;
+    padding-top: calc(100px + 4.8rem);
+}
+
+@media only screen and (max-width: 700px) and (orientation: portrait) {
+	header.archive-header {
+		padding: 3.6rem 2.4rem;
+		position: static;
+	}
 }
 
 body.admin-bar header.archive-header {
@@ -174,4 +187,30 @@ body.admin-bar header.archive-header {
 /* posts */
 #site-content .posts {
     margin-top: var(--sg-sticky-filters-height);
+}
+
+@media only screen and (max-width: 700px) and (orientation: portrait) {
+	#site-content .posts {
+		margin-top: 0px;
+	}
+}
+
+.post.status-publish .entry-header {
+	display: none;
+}
+
+.post.status-publish .post-inner {
+	display: none;
+}
+
+.single-nav img.attachment-eksell_preview_image {
+	display: none;
+}
+
+.single-nav header.single-nav-item-header {
+	display: none;
+}
+
+header.entry-header hr.color-accent {
+	display: none;
 }

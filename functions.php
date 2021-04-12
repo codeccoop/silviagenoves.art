@@ -11,6 +11,24 @@ function silvia_genoves_enqueue_scripts () {
         ),
         wp_get_theme()->get("Version")
     );
+
+    wp_register_script(
+	    "silvia-genoves-dropdown",
+	    plugins_url("js/dropdown.js", __FILE__),
+	    array("jquery"),
+	    wp_get_theme()->get("Version"),
+	    true
+    );
+    wp_enqueue_script("silvia-genoves-dropdown");
+
+    wp_register_script(
+	    "silvia-genoves-breadcrumb",
+	    plugins_url("js/breadcrumb.js", __FILE__),
+	    array("jquery"),
+	    wp_get_theme()->get("Version"),
+	    true
+    );
+    wp_enqueue_script("silvia-genoves-breadcrumb");
 }
 
 add_action("pre_get_posts", "silvia_genoves_sort_reversed");
