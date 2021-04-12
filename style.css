@@ -12,19 +12,13 @@
 
 
 :root {
-	/* Typography */
-	--eksell-headings-weight: 700;
 	/* Colors */
-	--eksell-accent-color: #d23c50;
-	--eksell-primary-color: #1e2d32;
-	--eksell-secondary-color: #707376;
-	--eksell-border-color: #d6d5d4;
 	--eksell-light-background-color: #ffffff;
-	--eksell-background-color: #fff;
 	--eksell-menu-modal-background-color: #ffffff;
 	--eksell-menu-modal-text-color: var(--eksell-primary-color);
 	/* Layout */
 	--eksell-aside-width: 200px;
+        --eksell-inner-width-thin: 85rem;
   	/* Custom */
   	--sg-sticky-filters-height: 125px;
   	--sg-portrait-header-height: 85px;
@@ -98,7 +92,7 @@ header.preview-header {
 
 #site-aside .main-menu .current_page_item a {
     color: var( --eksell-accent-color );
-    text-decoration: underline;
+    font-weight: bold;
 }
 
 
@@ -109,7 +103,7 @@ header.archive-header {
     top: 0px;
     z-index: 100;
     background-color: var(--eksell-background-color);
-    padding: 4.8rem 2.4rem;
+    padding: 4.8rem 6rem;
     box-shadow: 0px 2px 2px 0px #fdfdfd;
     width: 100%;
     padding-top: calc(100px + 4.8rem);
@@ -184,6 +178,11 @@ body.admin-bar header.archive-header {
     right: 0px;
 }
 
+.filter-list a.active {
+    text-decoration: none;
+    font-weight: bold;
+}
+
 /* posts */
 #site-content .posts {
     margin-top: var(--sg-sticky-filters-height);
@@ -195,8 +194,34 @@ body.admin-bar header.archive-header {
 	}
 }
 
-.post.status-publish .entry-header {
+.post.status-publish .entry-header,
+.page.status-publish .entry-header {
 	display: none;
+}
+
+.page.status-publish .post-inner,
+.post.status-publish .featured-media {
+    margin-top: 3.5rem;
+}
+
+.media-wrapper {
+    position: relative;
+}
+
+.media-wrapper .media-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 3rem;
+    z-index: 10;
+    color: white;
+    text-shadow: 1px 1px 7px #000;
+    transition: text-shadow 200ms ease-in-out;
+    cursor: pointer;
+}
+
+.media-wrapper .media-close-btn:hover {
+    text-shadow: 2px 2px 10px #000;
 }
 
 .post.status-publish .post-inner {
@@ -213,4 +238,16 @@ body.admin-bar header.archive-header {
 
 header.entry-header hr.color-accent {
 	display: none;
+}
+
+/* FOOTER */
+#site-footer .footer-credits:only-child .theme-credits {
+    display: none;
+}
+
+/* CV */
+
+#cvList li {
+    margin-bottom: 1.5em;
+    list-style: none;
 }

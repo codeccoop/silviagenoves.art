@@ -14,7 +14,7 @@ function silvia_genoves_enqueue_scripts () {
 
     wp_register_script(
 	    "silvia-genoves-dropdown",
-	    plugins_url("js/dropdown.js", __FILE__),
+            get_stylesheet_directory_uri() . "/js/dropdown.js",
 	    array("jquery"),
 	    wp_get_theme()->get("Version"),
 	    true
@@ -23,7 +23,7 @@ function silvia_genoves_enqueue_scripts () {
 
     wp_register_script(
 	    "silvia-genoves-breadcrumb",
-	    plugins_url("js/breadcrumb.js", __FILE__),
+            get_stylesheet_directory_uri() . "/js/breadcumb.js",
 	    array("jquery"),
 	    wp_get_theme()->get("Version"),
 	    true
