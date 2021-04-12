@@ -32,6 +32,7 @@
 .cols-10 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-11 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-12 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
+
 @media (min-width: 700px) {
 .cols-t-1 > .col.col-span-2 { width: calc( 8.3333% * 2 ); }
 .cols-t-1 > .col.col-span-3 { width: calc( 8.3333% * 3 ); }
@@ -56,6 +57,7 @@
 .cols-t-11 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-t-12 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 }
+
 @media (min-width: 1000px) {
 .cols-tl-1 > .col.col-span-2 { width: calc( 8.3333% * 2 ); }
 .cols-tl-1 > .col.col-span-3 { width: calc( 8.3333% * 3 ); }
@@ -80,6 +82,7 @@
 .cols-tl-11 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-tl-12 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 }
+
 @media (min-width: 1200px) {
 .cols-d-1 > .col.col-span-2 { width: calc( 8.3333% * 2 ); }
 .cols-d-1 > .col.col-span-3 { width: calc( 8.3333% * 3 ); }
@@ -95,7 +98,7 @@
 .cols-d-4 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-d-5 > .col.col-span-2 { width: calc( 8.3333% * 10 ); }
 .cols-d-5 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
-.cols-d-6 > .col.col-span-2 { width: calc( 8.3333% * 12 ); }
+.cols-d-6 > .col.col-span-2 { width: calc( 8.3333% * 9 ); }
 .cols-d-6 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-d-7 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-d-8 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
@@ -104,6 +107,7 @@
 .cols-d-11 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-d-12 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 }
+
 @media (min-width: 1600px) {
 .cols-dl-1 > .col.col-span-2 { width: calc( 8.3333% * 2 ); }
 .cols-dl-1 > .col.col-span-3 { width: calc( 8.3333% * 3 ); }
@@ -119,7 +123,7 @@
 .cols-dl-4 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-dl-5 > .col.col-span-2 { width: calc( 8.3333% * 10 ); }
 .cols-dl-5 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
-.cols-dl-6 > .col.col-span-2 { width: calc( 8.3333% * 6 ); }
+.cols-dl-6 > .col.col-span-2 { width: calc( 8.3333% * 9 ); }
 .cols-dl-6 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-dl-7 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }
 .cols-dl-8 > .col[class*="col-span-*"] { width: calc( 8.3333% * 12 ); }

@@ -225,10 +225,10 @@ function eksell_ajax_load_more () {
 			$span = count($tags) > 0;
 			if ($span) {
 				foreach ($tags as $tag) {
-					if ($tag->term_id == "col-2") {
-						$span = 2;
-					} else if ($tag->term_id == "col-3") {
+					if ($tag->slug == "col-3") {
 						$span = 3;
+					} else if ($tag->slug == "col-2") {
+						$span = 2;
 					} else {
 						$span = 1;
 					}

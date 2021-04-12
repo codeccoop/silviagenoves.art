@@ -120,8 +120,19 @@
 							GLOBAL $post;
 							$tags = wp_get_post_tags($post->ID);
 							$span = count($tags) > 0;
+							if ($span) {
+								foreach ($tags as $tag) {
+									if ($tag->slug == "col-3") {
+										$span = 3;
+									} else if ($tag->slug == "col-2") {
+										$span = 2;
+									} else {
+										$span = 1;
+									}
+								}
+							}
 							?>
-							<div class="article-wrapper col <?php echo $span ? "col-span-2" : ""; ?>">
+							<div class="article-wrapper col <?php echo $span ? "col-span-{$span}" : ""; ?>">
 								<?php get_template_part( 'inc/parts/preview', get_post_type() ); ?>
 							</div>
 
