@@ -137,7 +137,6 @@ function sg_get_filter_terms () {
 
 function sg_aside_filters () {
 	$terms = sg_get_filter_terms();
-	$category = get_query_var("category");
 	if ($_GET && !empty($_GET) && isset($_GET["cat"])) {
 		$cat = $_GET["cat"];
 	} else if ($_GET && !empty($_GET) && isset($_GET["page_id"])) {
@@ -145,6 +144,11 @@ function sg_aside_filters () {
 	} else {
 		$cat = 3;
 	}
+
+        $nested_ids = array_map(function ($k) {
+            return $terms["nested"][$k];
+        }, $terms["nested"]);
+        echo print_r($neted_ids);
 
 	foreach ($terms["main"] as $term) : ?>
 		<li class="page_item <?php echo $term->term_id == $cat ? "current_page_item" : ""; ?>">
