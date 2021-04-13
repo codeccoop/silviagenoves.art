@@ -204,6 +204,11 @@ header.preview-header {
 #site-aside .site-aside-menu .nested-menu {
 	padding-left: 1.5rem;
 	font-size: .95em;
+        display: none;
+}
+
+#site-aside .site-aside-menu .nested-menu__open {
+    display: block;
 }
 
 #site-aside .site-aside-menu .nested-menu .page_item_nested a {

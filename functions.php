@@ -142,19 +142,19 @@ function sg_aside_filters () {
 	} else if ($_GET && !empty($_GET) && isset($_GET["page_id"])) {
 		$cat = null;	
 	} else {
-		$cat = 3;
+		$cat = 2;
 	}
 
-        $nested_ids = array_map(function ($k) {
-            return $terms["nested"][$k];
-        }, $terms["nested"]);
-        echo print_r($neted_ids);
+        $nested_ids = array();
+        foreach ($terms["nested"] as $term) {
+            $nested_ids[] = $term->term_id;
+        }
 
 	foreach ($terms["main"] as $term) : ?>
 		<li class="page_item <?php echo $term->term_id == $cat ? "current_page_item" : ""; ?>">
 		<a href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo $term->name; ?></a>
 		<?php if ($term->slug == "joyeria") : ?>
-		<ul class="nested-menu reset-list-style">
+                <ul class="nested-menu reset-list-style <?php echo $term->term_id == $cat || in_array($cat, $nested_ids) ? "nested-menu__open" : ""; ?>">
 		<?php foreach ($terms["nested"] as $term) : ?>
 			<li class="page_item page_item_nested <?php echo $term->term_id == $cat ? "current_page_item" : ""; ?>">
 				<a href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo $term->name; ?></a>	
