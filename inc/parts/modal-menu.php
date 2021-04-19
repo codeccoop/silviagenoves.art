@@ -17,37 +17,28 @@
 
 			<div class="menu-top">
 
-				<?php 
+				<?php
 				do_action( 'eksell_menu_modal_top_start' );
 				?>
 
 				<ul class="main-menu reset-list-style">
 					<?php
-					if ( has_nav_menu( 'main' ) ) {
-						wp_nav_menu( array(
-							'container'      		=> '',
-							'items_wrap'     		=> '%3$s',
-							'show_toggles'   		=> true,
-							'theme_location' 		=> 'main',
-						) );
-					} else {
-						wp_list_pages( array( 
-							'match_menu_classes' 	=> true,
-							'title_li'           	=> false, 
-						) );
-					}
+                         sg_aside_filters();
+                         wp_list_pages(array(
+							'match_menu_classes' => true,
+							'title_li' => false,
+						 ));
 					?>
 				</ul><!-- .main-menu -->
 
-				<?php 
-				if ( get_theme_mod( 'eksell_enable_search', true ) ) : 
+				<?php
+				if ( get_theme_mod( 'eksell_enable_search', true ) ) :
 					?>
 					<div class="menu-modal-search">
 						<?php get_search_form(); ?>
 					</div><!-- .menu-modal-search -->
-					<?php 
+					<?php
 				endif;
-				
 				do_action( 'eksell_menu_modal_top_end' );
 				?>
 
