@@ -202,9 +202,9 @@ header.preview-header {
 }
 
 #site-aside .site-aside-menu .nested-menu {
-	padding-left: 1.5rem;
-	font-size: .95em;
-        display: none;
+	  padding-left: 1.5rem;
+	  font-size: .95em;
+    display: none;
 }
 
 #site-aside .site-aside-menu .nested-menu__open {
@@ -212,11 +212,12 @@ header.preview-header {
 }
 
 #site-aside .site-aside-menu .nested-menu .page_item_nested a {
-	font-weight: normal;	
+	  font-weight: normal;
 }
 
 #site-aside .site-aside-menu .nested-menu .page_item_nested.current_page_item a {
-	font-weight: bold;
+    color: var( --eksell-accent-color );
+	  font-weight: bold;
 }
 
 #site-aside .main-menu .page_item::before,
@@ -234,6 +235,10 @@ header.preview-header {
 #site-aside .main-menu .current_page_item a {
     color: var( --eksell-accent-color );
     font-weight: bold;
+}
+
+#site-aside .main-menu .current_page_item .nested-menu .page_item_nested a {
+    color: var(--eksell-primary-color);
 }
 
 
