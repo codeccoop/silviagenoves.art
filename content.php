@@ -35,7 +35,14 @@
 	</header><!-- .entry-header -->
 
 	<?php
-	if ( has_post_thumbnail() && ! post_password_required() ) : 
+    // Conditional display of the single post navigation, depending on the post type.
+    // You can modify the list of post types with support for single post navigation using the `eksell_singular_post_navigation_post_types` filter.
+    echo "<h1><span style=\"color: red\">Am I on the top of the post media?</h1>";
+    if (is_singular(apply_filters("eksell_singular_post_navigation_post_types", array("post", "jetpack-portfolio")))) {
+        get_template_part("inc/parts/single-post-navigation");
+    }
+
+	if (has_post_thumbnail() && !post_password_required()) :
 		?>
 
 		<figure class="featured-media section-inner i-a a-fade-up a-del-200">
@@ -153,9 +160,9 @@
 
 	// Conditional display of the single post navigation, depending on the post type.
 	// You can modify the list of post types with support for single post navigation using the `eksell_singular_post_navigation_post_types` filter.
-	if ( is_singular( apply_filters( 'eksell_singular_post_navigation_post_types', array( 'post', 'jetpack-portfolio' ) ) ) ) {
+    /* if ( is_singular( apply_filters( 'eksell_singular_post_navigation_post_types', array( 'post', 'jetpack-portfolio' ) ) ) ) {
 		get_template_part( 'inc/parts/single-post-navigation' );
-	}
+    } */
 
 	// Output comments wrapper if comments are open or if there are comments, and check for password.
 	if ( ( comments_open() || get_comments_number() ) && ! post_password_required() ) : 

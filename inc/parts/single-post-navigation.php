@@ -14,20 +14,20 @@ $nav_class = ( $nav['prev'] && $nav['next'] ) ? ' has-both' : ( ! $nav['prev'] ?
 
 	<div class="single-nav-grid grid no-v-gutter cols-t-6 cols-tl-4">
 
-		<?php 
-		
-		foreach ( $nav as $slug => $nav_post ) : 
+		<?php
+
+		foreach ( $nav as $slug => $nav_post ) :
 
 			if ( ! $nav_post ) continue;
 
-			$fallback_image = eksell_get_fallback_image();
-			$has_media 		= ( has_post_thumbnail( $nav_post->ID ) && ! post_password_required( $nav_post->ID ) ) || $fallback_image;
+			# $fallback_image = eksell_get_fallback_image();
+			# $has_media 		= ( has_post_thumbnail( $nav_post->ID ) && ! post_password_required( $nav_post->ID ) ) || $fallback_image;
 
 			$icon = ( $slug == 'prev' ) ? 'arrow-left' : 'arrow-right';
 
 			$link_classes 	= ' ' . $slug . '-post';
-			$link_classes 	.= $has_media ? ' has-media' : ' no-media';
-		
+			# $link_classes 	.= $has_media ? ' has-media' : ' no-media';
+            $link_classes .= ' no-media';
 			?>
 
 			<div class="col">
@@ -47,9 +47,9 @@ $nav_class = ( $nav['prev'] && $nav['next'] ) ? ' has-both' : ( ! $nav['prev'] ?
 
 					<?php
 
-					$nav_post_title = get_the_title( $nav_post->ID );
+					# $nav_post_title = get_the_title( $nav_post->ID );
 
-					if ( $nav_post_title || has_action( 'eksell_single_nav_item_header_start' ) || has_action( 'eksell_single_nav_item_header_end' ) ) : 
+                    /* if ( $nav_post_title || has_action( 'eksell_single_nav_item_header_start' ) || has_action( 'eksell_single_nav_item_header_end' ) ) : 
 						?>
 
 						<header class="single-nav-item-header contain-margins">
@@ -68,21 +68,21 @@ $nav_class = ( $nav['prev'] && $nav['next'] ) ? ' has-both' : ( ! $nav['prev'] ?
 
 						</header><!-- .single-nav-item-header -->
 
-						<?php 
-					endif;
-					
-					do_action( 'eksell_single_nav_item_end', $nav_post, $slug ); 
-					
+						<?php
+                    endif; */
+
+					do_action( 'eksell_single_nav_item_end', $nav_post, $slug );
+
 					?>
 
 				</a>
 
 			</div><!-- .col -->
 
-			<?php 
+			<?php
 		endforeach;
 		?>
 
 	</div><!-- .single-nav-grid -->
-	
+
 </nav><!-- .single-nav -->
