@@ -357,7 +357,7 @@ body.admin-bar header.archive-header {
 .media-wrapper .media-close-btn {
     position: absolute;
     top: 2rem;
-    right: 2rem;
+    right: calc(5% + 2rem);
     font-size: 3rem;
     z-index: 10;
     text-shadow: 1px 1px 7px #000;
@@ -365,18 +365,61 @@ body.admin-bar header.archive-header {
     cursor: pointer;
 }
 
+@media only screen and (max-width: 700px) and (orientation: portrait) {
+    .media-wrapper .media-close-btn {
+        font-size: 1.8rem;
+        top: 1.5rem;
+        right: calc(10% + 1.5rem);
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .media-wrapper .media-close-btn {
+        font-size: 2.5rem;
+        top: 2rem;
+        right: calc(10% + 2rem);
+    }
+}
+
 .media-wrapper .media-close-btn a {
-	text-decoration: none;
-	text-underline-offset: none;
-    	color: white;
+	  text-decoration: none;
+	  text-underline-offset: none;
+    color: white;
 }
 
 .media-wrapper .media-close-btn:hover {
     text-shadow: 2px 2px 10px #000;
 }
 
+.media-wrapper .attachment-post-thumbnail,
+.media-wrapper .attachment-full {
+    width: 90%;
+    margin: auto;
+}
+
+@media only screen and (max-width: 1200px) {
+    .media-wrapper .attachment-post-thumbnail,
+    .media-wrapper .attachment-full {
+        width: 80%;
+        margin: auto;
+    }
+}
+
 .post.status-publish .post-inner {
 	display: none;
+}
+
+.single-nav {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    height: 0;
+    width: 100%;
+}
+
+.single-nav .col + .col a {
+    margin-top: 0px;
 }
 
 .single-nav img.attachment-eksell_preview_image {
@@ -387,10 +430,68 @@ body.admin-bar header.archive-header {
 	display: none;
 }
 
+.single-nav .prev-post,
+.single-nav .next-post {
+    transform: translateX(0);
+}
+
 .single-nav .prev-post .arrow,
 .single-nav .next-post .arrow {
-	bottom: unset;
-	top: unset;
+	  bottom: unset;
+	  top: unset;
+    transform: translateX(0);
+}
+
+.has-anim .single-nav .prev-post:hover .arrow {
+    transform: translate(-.7em);
+}
+
+.has-anim .single-nav .next-post:hover .arrow {
+    transform: translateX(.7em);
+}
+
+.single-nav .prev-post .arrow {
+    left: 0px;
+    right: unset;
+}
+
+.single-nav .next-post .arrow {
+    right: 0px;
+    left: unset;
+}
+
+@media only screen and (max-width: 1200px) {
+    .single-nav .prev-post .arrow .svg-icon,
+    .single-nav .next-post .arrow .svg-icon {
+        transform: scale(.7);
+    }
+
+    .single-nav .prev-post .arrow .svg-icon path {
+        stroke-width: 3px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .single-nav .prev-post .arrow .svg-icon,
+    .single-nav .next-post .arrow .svg-icon {
+        transform: scale(.6);
+    }
+
+    .single-nav .prev-post .arrow .svg-icon path {
+        stroke-width: 3px;
+    }
+}
+
+@media only screen and (max-width: 700px) and (orientation: portrait) {
+    .single-nav .prev-post .arrow .svg-icon,
+    .single-nav .next-post .arrow .svg-icon {
+        transform: scale(.5);
+    }
+
+    .single-nav .prev-post .arrow .svg-icon path,
+    .single-nav .next-post .arrow .svg-icon path {
+        stroke-width: 3px;
+    }
 }
 
 header.entry-header hr.color-accent {
