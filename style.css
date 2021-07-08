@@ -381,6 +381,10 @@ body.admin-bar header.archive-header {
     cursor: pointer;
 }
 
+.product .media-wrapper .media-close-btn {
+    display: none;
+}
+
 @media only screen and (max-width: 700px) and (orientation: portrait) {
     .media-wrapper .media-close-btn {
         font-size: 1.8rem;

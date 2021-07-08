@@ -45,7 +45,10 @@ if (is_front_page() && is_home() && !is_paged()) : ?>
     wp_list_pages(array(
         "match_menu_classes" => true,
         "title_li" => false
-    ));
+    ));?>
+    <li class="page_item 575">
+      <a href="https://wordpress.orzopad.net/?page_id=575">Tienda</a>
+    </li><?php
 ?>
     </ul>
 </div>

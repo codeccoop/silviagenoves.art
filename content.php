@@ -144,8 +144,8 @@
 					<p class="edit-link"><a href="<?php echo esc_url( $edit_url ); ?>"><?php esc_html_e( 'Edit This', 'eksell' ); ?></a></p>
 				<?php endif; ?>
 
-				<?php 
-				do_action( 'eksell_entry_footer_end', $post->ID ); 
+				<?php
+				do_action( 'eksell_entry_footer_end', $post->ID );
 				?>
 
 			</footer><!-- .entry-footer -->
@@ -156,7 +156,7 @@
 
 	</div><!-- .post-inner -->
 
-	<?php 
+	<?php
 
 	// Conditional display of the single post navigation, depending on the post type.
 	// You can modify the list of post types with support for single post navigation using the `eksell_singular_post_navigation_post_types` filter.
@@ -172,11 +172,10 @@
 			<?php comments_template(); ?>
 		</div><!-- .comments-wrapper -->
 
-		<?php 
-	endif; 
-	
-	do_action( 'eksell_entry_article_end', $post->ID ); 
-	
+		<?php
+	endif;
+
+	do_action( 'eksell_entry_article_end', $post->ID );
 	?>
 
 </article><!-- .post -->

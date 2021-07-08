@@ -140,7 +140,7 @@ function sg_aside_filters () {
 	if ($_GET && !empty($_GET) && isset($_GET["cat"])) {
 		$cat = $_GET["cat"];
 	} else if ($_GET && !empty($_GET) && isset($_GET["page_id"])) {
-		$cat = null;	
+		$cat = null;
 	} else {
 		$cat = 2;
 	}
@@ -157,13 +157,14 @@ function sg_aside_filters () {
                 <ul class="nested-menu reset-list-style <?php echo $term->term_id == $cat || in_array($cat, $nested_ids) ? "nested-menu__open" : ""; ?>">
 		<?php foreach ($terms["nested"] as $term) : ?>
 			<li class="page_item page_item_nested <?php echo $term->term_id == $cat ? "current_page_item" : ""; ?>">
-				<a href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo $term->name; ?></a>	
+				<a href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo $term->name; ?></a>
 			</li>
 		<?php endforeach; ?>
 		</ul>
 		<?php endif; ?>
 	</li>
-	<?php endforeach;
+	<?php endforeach;?>
+    <?php
 }
 
 function eksell_ajax_filters () {
