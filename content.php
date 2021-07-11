@@ -1,12 +1,12 @@
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<?php 
+	<?php
 	do_action( 'eksell_entry_article_start', $post->ID );
 	?>
 
 	<header class="entry-header section-inner mw-thin i-a a-fade-up">
 
-		<?php 
+		<?php
 		do_action( 'eksell_entry_header_start', $post->ID );
 		?>
 
@@ -25,7 +25,7 @@
 				<?php the_excerpt(); ?>
 			</div><!-- .intro-text -->
 
-			<?php 
+			<?php
 		endif;
 
 		do_action( 'eksell_entry_header_end', $post->ID );

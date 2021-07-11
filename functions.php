@@ -139,7 +139,7 @@ function sg_aside_filters () {
 	$terms = sg_get_filter_terms();
 	if ($_GET && !empty($_GET) && isset($_GET["cat"])) {
 		$cat = $_GET["cat"];
-	} else if ($_GET && !empty($_GET) && isset($_GET["page_id"])) {
+	} else if ($_GET && !empty($_GET) && (isset($_GET["page_id"]) || isset($_GET["post_type"]) or isset($_GET["product_cat"]) || isset($_GET["product"]))) {
 		$cat = null;
 	} else {
 		$cat = 2;
@@ -243,7 +243,7 @@ function eksell_ajax_load_more () {
 			<div class="article-wrapper col <?php echo $span ? "col-span-{$span}" : ""; ?>">
 				<?php get_template_part("inc/parts/preview", $post_type); ?>
 			</div>
-			<?php 
+			<?php
 		endwhile;
 	endif;
 	wp_die();
@@ -251,4 +251,60 @@ function eksell_ajax_load_more () {
 
 add_action("wp_ajax_nopriv_eksell_ajax_load_more", "eksell_ajax_load_more");
 add_action("wp_ajax_eksell_ajax_load_more", "eksell_ajax_load_more");
+
+add_action("after_setup_theme", "woocommerce_support");
+function woocommerce_support () {
+    add_theme_support("woocommerce");
+}
+
+// if (class_exists("Woocommerce")) {
+//     add_filter("woocommerce_enqueue_styles", "__return_empty_array");
+// }
+
+add_filter("woocommerce_show_page_title", "sg_hide_woocommerce_title");
+function sg_hide_woocommerce_title () {
+    return false;
+}
+
+remove_action("woocommerce_before_main_content", "woocommerce_breadcrumb", 20);
+remove_action("woocommerce_before_shop_loop", "woocommerce_catalog_ordering", 30);
+remove_action("woocommerce_before_shop_loop", "woocommerce_result_count", 20);
+remove_action("woocommerce_sidebar", "woocommerce_get_sidebar", 10);
+
+add_action("woocommerce_before_shop_loop", "sg_before_shop_loop");
+function sg_before_shop_loop () {
+    echo sg_woocommerce_shop_menu();
+}
+
+function sg_woocommerce_shop_menu () {
+    if ($_GET && !empty($_GET) && isset($_GET["product_cat"])) {
+        $cat = $_GET["product_cat"];
+    } else {
+        $cat = null;
+    }
+
+    $terms = get_terms("product_cat", array());
+    if ($terms) {
+        echo "<ul class=\"sg-woocommerce-categories-menu\">";
+        foreach ($terms as $term) {
+            $is_active = $term->slug == $cat;
+            if ($is_active) {
+                echo "<li class=\"sg-woocommerce-categories-menu__item active\">";
+            } else {
+                echo "<li class=\"sg-woocommerce-categories-menu__item\">";
+            }
+            echo "<a href=\"" . esc_url(get_term_link($term)) . "\" class=\"" . $term->slug . "\">";
+            echo $term->name;
+            echo "</a></li>";
+        }
+        echo "</ul>";
+    }
+}
+
+function woocommerce_template_loop_add_to_cart ($args=array()) {}
+
+add_action("woocommerce_after_shop_loop", "sg_after_shop_loop");
+function sg_after_shop_loop () {
+    echo "<div class=\"sg-woocommerce-global-message\"><p>Todos los productos de esta tienda están elaborados fuera de la industria, cada pieza es única y exclusiva que esta concebida y elaborada como una pequeña escultura. A cada una me he entregado con insistencia para procurarle alma.</p></div>";
+}
 ?>
