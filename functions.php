@@ -111,22 +111,22 @@ function sg_get_filter_terms () {
 		"taxonomy" => "category"
 	)));
 
-    	$terms_order = array("fotografia", "espectaculos", "plastica", "joyeria");
-    	$nested_terms_order = array("oro-plata-y-piedras preciosas", "resina", "resina-y-plata", "resina-y-piedras-semipreciosas");
+    $terms_order = array("fotografia", "espectaculos", "plastica", "joyeria");
+    $nested_terms_order = array("oro-plata-y-piedras preciosas", "resina", "resina-y-plata", "resina-y-piedras-semipreciosas");
 
-    	$terms = array();
-    	$nested_terms = array();
-    	foreach ($db_terms as $term) {
-        	$index = array_search($term->slug, $terms_order);
-        	if ($index !== false) {
-            		$terms[$index] = $term;
-        	} else if ($term->parent) {
-            		$index = array_search($term->slug, $nested_terms_order);
-       		     	$nested_terms[$index] = $term;
-        	}
-    	}
+    $terms = array();
+    $nested_terms = array();
+    foreach ($db_terms as $term) {
+        $index = array_search($term->slug, $terms_order);
+        if ($index !== false) {
+            $terms[$index] = $term;
+        } else if ($term->parent) {
+            $index = array_search($term->slug, $nested_terms_order);
+       		$nested_terms[$index] = $term;
+        }
+    }
 
-    	ksort($terms);
+    ksort($terms);
 	ksort($nested_terms);
 
 	return array(
@@ -137,18 +137,12 @@ function sg_get_filter_terms () {
 
 function sg_aside_filters () {
 	$terms = sg_get_filter_terms();
-	if ($_GET && !empty($_GET) && isset($_GET["cat"])) {
-		$cat = $_GET["cat"];
-	} else if ($_GET && !empty($_GET) && (isset($_GET["page_id"]) || isset($_GET["post_type"]) or isset($_GET["product_cat"]) || isset($_GET["product"]))) {
-		$cat = null;
-	} else {
-		$cat = 2;
-	}
+    $cat = get_query_var("cat");
 
-        $nested_ids = array();
-        foreach ($terms["nested"] as $term) {
-            $nested_ids[] = $term->term_id;
-        }
+    $nested_ids = array();
+    foreach ($terms["nested"] as $term) {
+        $nested_ids[] = $term->term_id;
+    }
 
 	foreach ($terms["main"] as $term) : ?>
 		<li class="page_item <?php echo $term->term_id == $cat ? "current_page_item" : ""; ?>">
@@ -277,11 +271,7 @@ function sg_before_shop_loop () {
 }
 
 function sg_woocommerce_shop_menu () {
-    if ($_GET && !empty($_GET) && isset($_GET["product_cat"])) {
-        $cat = $_GET["product_cat"];
-    } else {
-        $cat = null;
-    }
+    $cat = get_query_var("product_cat");
 
     $terms = get_terms("product_cat", array());
     if ($terms) {

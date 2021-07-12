@@ -608,6 +608,10 @@ header.entry-header hr.color-accent {
     opacity: 1;
 }
 
+.woocommerce ul.products li.product .price {
+    color: #888;
+}
+
 .woocommerce-loop-product__link .price,
 .woocommerce-loop-product__title {
     text-align: center;
