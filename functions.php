@@ -202,6 +202,14 @@ add_action("wp_ajax_nopriv_eksell_ajax_filters", "eksell_ajax_filters");
 add_action("wp_ajax_eksell_ajax_filters", "eksell_ajax_filters");
 
 
+add_action("eksell_site_aside_end", "sg_site_aside_end", 10);
+function sg_site_aside_end () {
+    echo eksell_the_social_menu(array(
+        "menu_class" => "social-menu reset-list-style social-icons circular",
+    ));
+}
+
+
 function eksell_ajax_load_more () {
 	$query_args = json_decode(wp_unslash($_POST["json_data"]), true);
 
