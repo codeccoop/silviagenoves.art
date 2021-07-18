@@ -273,28 +273,125 @@ function sg_before_shop_loop () {
 function sg_woocommerce_shop_menu () {
     $cat = get_query_var("product_cat");
 
-    $terms = get_terms("product_cat", array());
-    if ($terms) {
-        echo "<ul class=\"sg-woocommerce-categories-menu\">";
+    if ($cat != null) {
+        return;
+    }
+
+    $terms = array_filter(get_terms("product_cat", array()), function ($term) {
+        return $term->parent == null;
+    });
+    if ($terms) { ?>
+        <ul class="products sg-categories columns-3">
+        <?php $index = 0;
         foreach ($terms as $term) {
             $is_active = $term->slug == $cat;
-            if ($is_active) {
-                echo "<li class=\"sg-woocommerce-categories-menu__item active\">";
-            } else {
-                echo "<li class=\"sg-woocommerce-categories-menu__item\">";
-            }
-            echo "<a href=\"" . esc_url(get_term_link($term)) . "\" class=\"" . $term->slug . "\">";
-            echo $term->name;
-            echo "</a></li>";
-        }
-        echo "</ul>";
+            $position = $index % 3 === 0 ? "first" : ($index % 3 === 2 ? "last" : "");
+            $index++; ?>
+            <li class="product type-product sg-category <?php echo $position ?>">
+                <a
+                  class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
+                  href="<?php echo get_category_link($term) ?>"
+                >
+                  <p><?php echo $term->name ?></p>
+                <?php echo sg_get_category_thumbnail($term); ?>
+                </a>
+            </li>
+        <?php } ?>
+        </ul>
+    <?php }
+}
+
+function sg_get_category_thumbnail ($term) {
+    $thumbnail_id = get_woocommerce_term_meta($term->term_id, "thumbnail_id", true);
+    if ($thumbnail_id) {
+        $size = "woocommerce_thumbnail";
+        $dimensions = wc_get_image_size($size);
+        $image = wp_get_attachment_image_src($thumbnail_id, $size)[0];
+        $image_srcset = function_exists("wp_get_attachment_image_srcset") ? wp_get_attachment_image_srcset($thumbnail_id, $size) : false;
+        $image_sizes = function_exists("wp_get_attachment_image_sizes") ? wp_get_attachment_image_sizes($thumbnail_id, $size) : false;
+    } else {
+        $image = wc_placeholder_img_src();
+        $image_srcset = false;
+        $image_sizes = false;
     }
+
+    $html = "";
+    if ($image) {
+        $image = str_replace(" ", "%20", $image);
+        $html .= "<img src=\"" . esc_url($image) . "\" alt=\"" . esc_attr($term->name) . "\" width=\"" . esc_attr($dimensions["width"]) . "\" height=\"" . esc_attr($dimensions["height"]). "\"";
+        if ($image_srcset && $image_sizes) {
+            $html .= " srcset\"" . esc_attr($image_srcset) . "\" sizes=\"" . esc_attr($image_sizes) . "\"";
+        }
+        $html .= " />";
+    }
+
+    return $html;
 }
 
 function woocommerce_template_loop_add_to_cart ($args=array()) {}
 
-add_action("woocommerce_after_shop_loop", "sg_after_shop_loop");
+add_action("woocommerce_product_query", "sg_product_query", 10, 2);
+function sg_product_query ($q, $query) {
+    $q->set("orderby", array(
+        "product_cat" => "asc",
+        "name" => "asc"
+    ));
+    $q->set("order", "asc");
+}
+
+add_action("woocommerce_shop_loop", "sg_shop_loop", 10);
+function sg_shop_loop () {
+    $cat = get_query_var("product_cat");
+    if ($cat == null) {
+        return;
+    }
+    global $product;
+    $terms = get_the_terms($product->id, "product_cat");
+    $root_terms = array_filter($terms, function ($term) {
+        return $term->parent == null;
+    });
+    $nested_terms = array_filter($terms, function ($term) {
+        return $term->parent != null;
+    });
+
+    if (sizeof($root_terms) > 0) {
+        $term = $root_terms[0];
+        $is_first = true;
+        if ($term->count > 1) {
+            $siblings = wc_get_products(array(
+                "category" => $term->slug,
+                "orderby" => "name",
+                "order" => "asc"
+            ));
+            $is_first = $siblings[0]->id == $product->id;
+        }
+
+        if ($is_first) {
+            echo "<h1 class=\"sg-category-title\">" . esc_html($term->name) . "</h1>";
+        }
+    }
+
+    if (sizeof($nested_terms) > 0) {
+        $term = $nested_terms[1];
+        $siblings = wc_get_products(array(
+            "category" => $term->term_id,
+            "orderby" => "name",
+            "order" => "asc"
+        ));
+
+        $is_first = true;
+        if (sizeof($siblings) > 0) {
+            $is_first = $siblings[0]->id == $product->id;
+        }
+
+        if ($is_first) {
+            echo "<h3 class=\"sg-subcategory-title\">" . esc_html($term->name) . "</h3>";
+        }
+    }
+}
+
+/** add_action("woocommerce_after_shop_loop", "sg_after_shop_loop");
 function sg_after_shop_loop () {
     echo "<div class=\"sg-woocommerce-global-message\"><p>Todos los productos de esta tienda están elaborados fuera de la industria, cada pieza es única y exclusiva que esta concebida y elaborada como una pequeña escultura. A cada una me he entregado con insistencia para procurarle alma.</p></div>";
-}
+    } */
 ?>

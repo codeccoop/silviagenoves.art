@@ -532,7 +532,7 @@ header.entry-header hr.color-accent {
 
 
 .woocommerce-products-header {
-    // height: var(--sg-sticky-filters-height);
+    margin-top: var(--sg-sticky-filters-height);
     padding-top: 1.2rem;
 }
 
@@ -544,21 +544,73 @@ header.entry-header hr.color-accent {
 
 .sg-woocommerce-products-header__title {
     text-align: center;
-    margin-top: var(--sg-sticky-filters-height);
-    margin-bottom: 1rem;
+    // margin-top: var(--sg-sticky-filters-height);
+    // margin-bottom: 1rem;
     line-height: 1;
+    font-size: 1.7em;
+    font-weight: bold;
 }
 
 .sg-woocommerce-products-header__title a {
     text-decoration: none;
-    color: var(--eksell-primary-color);
+    // color: var(--eksell-primary-color);
+    color: white;
+    text-shadow: 2px 2px 7px #555;
 }
 
-.sg-woocommerce-products-header__title a:hover {
+/** .sg-woocommerce-products-header__title a:hover {
     color: var(--eksell-accent-color);
+} */
+
+.sg-woocommerce-products-header__title-background {
+    background-image: url(/wp-content/uploads/2021/07/IMG_7226-scaled.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1em 2.5em;
 }
 
-.sg-woocommerce-global-message {
+.products.sg-categories.columns-3 li.product.sg-category {
+    position: relative;
+    width: calc(100% / 3);
+    margin: 0px;
+}
+
+.sg-category p {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    line-height: 1;
+    height: min-content;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 2px 2px 7px #333;
+}
+
+.sg-subcategory-title {
+    float: left;
+    clear: both;
+}
+
+.sg-category-title {
+    margin-top: 0px;
+}
+
+.sg-subcategory-title:nth-child(2) {
+    margin-top: 0px;
+}
+
+.sg-subcategory-title ~ .product {
+    clear: both;
+}
+
+/** .sg-woocommerce-global-message {
     padding: 0 5rem 5rem;
 }
 
@@ -594,7 +646,7 @@ header.entry-header hr.color-accent {
 .sg-woocommerce-categories-menu__item.active a,
 .sg-woocommerce-categories-menu__item:hover a {
     color: var(--eksell-accent-color);
-}
+} */
 
 .attachment-woocommerce_thumbnail {
     border-radius: 50%;
