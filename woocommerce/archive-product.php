@@ -38,14 +38,11 @@ do_action('woocommerce_before_main_content');
     if (!$cat) : ?>
       <div class="woocommerce-products-header__title sg-woocommerce-products-header__title page-title">
         <a href="<?= get_permalink(woocommerce_get_page_id('shop')); ?>">
-            <div class="sg-woocommerce-products-header__title-background">
-                <p>Todos los productos de esta tienda están elaborados fuera de la industria, cada pieza es única y exclusiva que esta concebida y elaborada como una pequeña escultura. A cada una me he entregado con insistencia para procurarle alma.</p>
-            </div>
+          <h1>Tienda</h1>
         </a>
       </div>
-    <?php endif; ?>
+    <?php endif;
 
-    <?php
     /**
      * Hook: woocommerce_archive_description.
      *
