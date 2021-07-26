@@ -21,7 +21,7 @@ global $product;
 $cat = get_query_var("product_cat");
 
 // Ensure visibility.
-if ( empty( $product ) || ! $product->is_visible() || ! $cat ) {
+if ( empty( $product ) || ! $product->is_visible()) {
 	return;
 }
 ?>

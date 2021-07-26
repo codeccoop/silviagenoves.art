@@ -35,10 +35,10 @@ do_action('woocommerce_before_main_content');
         <h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
     <?php endif;
     $cat = get_query_var("product_cat");
-    if (!$cat) : ?>
+    if (!$cat || true) : ?>
       <div class="woocommerce-products-header__title sg-woocommerce-products-header__title page-title">
         <a href="<?= get_permalink(woocommerce_get_page_id('shop')); ?>">
-          <h1>Tienda</h1>
+          <h1>la Tienda</h1>
         </a>
       </div>
     <?php endif;

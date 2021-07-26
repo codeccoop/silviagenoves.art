@@ -288,7 +288,7 @@ function eksell_the_archive_filter()
             echo sg_woocommerce_shop_menu();
         }
 
-        function sg_woocommerce_shop_menu()
+        /* function sg_woocommerce_shop_menu ()
         {
             $cat = get_query_var("product_cat");
 
@@ -314,7 +314,43 @@ function eksell_the_archive_filter()
                 </li>
             <?php } ?>
         </ul>
-<?php }
+        <?php }
+        } */
+
+        function sg_woocommerce_shop_menu () {
+        $cat = get_query_var("product_cat");
+
+        $terms = array_values(array_filter(get_terms("product_cat", array()), function ($term) {
+            return $term->parent == null;
+        }));
+        if ($terms) {
+            echo "<ul class=\"sg-woocommerce-categories-menu\">";
+            foreach ($terms as $term) {
+                // $children = get_term_children($term->term_id, "product_cat");
+                $is_active = $term->slug == $cat;
+                if ($is_active) {
+                    echo "<li class=\"sg-woocommerce-categories-menu__item active\">";
+                } else {
+                    echo "<li class=\"sg-woocommerce-categories-menu__item\">";
+                }
+                echo "<a href=\"" . esc_url(get_term_link($term)) . "\" class=\"" . $term->slug . "\">";
+                echo $term->name;
+                echo "</a>";
+                /** if (sizeof($children) > 0) {
+                    echo "<ul class=\"sg-woocommerce-subcategories-menu\">";
+                    foreach ($children as $term_id) {
+                        $term = get_term($term_id);
+                        $is_active = $term->slug == $cat;
+                        echo "<li class=\"sg-woocommerce-subcategories-menu__item " . ($is_active ? "active" : "") . "\">";
+                        echo "<a href=\"" . esc_url(get_term_link($term)) . "\" class=\"" . $term->slug . "\">" . esc_html($term->name) . "</a>";
+                        echo "</li>";
+                    }
+                    echo "</ul>";
+                    } */
+                echo "</li>";
+            }
+            echo "</ul>";
+        }
         }
 
         function sg_get_category_thumbnail($term)
@@ -366,7 +402,17 @@ function eksell_the_archive_filter()
                 ));
                 $q->set("order", "asc");
             } else {
-                $q->set("orderby", "title");
+                $q->set("meta_key", "_scat");
+                # $q->set("meta_query", array(
+                #    "relation" => "",
+                #    array(
+                #        "key" => "_cat"
+                #    )
+                #));
+                $q->set("orderby", array(
+                    "meta_value" => "asc",
+                    "title" => "asc"
+                ));
                 $q->set("order", "asc");
             }
         }
@@ -384,10 +430,19 @@ function eksell_the_archive_filter()
                 if (sizeof($nested_terms)) {
                     $term = $nested_terms[0];
                     update_post_meta($product->id, "_scat", $term->slug);
+                } else {
+                    $term = $terms[0];
+                    update_post_meta($product->id, "_scat", $term->slug);
                 }
 
-                $term = $terms[0];
-                update_post_meta($product->id, "_cat", $term->slug);
+                $root_terms = array_values(array_filter($terms, function ($term) {
+                    return $term->parent == null;
+                }));
+                if (sizeof($root_terms) > 0) {
+                    $term = $root_terms[0];
+                    # echo "<h1><em>" . $term->slug . " - " . $product->slug . "</em></h1>";
+                    update_post_meta($product->id, "_cat", $term->slug);
+                }
             }
         }
 
@@ -395,9 +450,9 @@ function eksell_the_archive_filter()
         function sg_shop_loop()
         {
             $cat = get_query_var("product_cat");
-            if ($cat == null) {
+            /* if ($cat == null) {
                 return;
-            }
+                } */
             global $product;
             sg_sync_on_product_save($product->id);
             $terms = get_the_terms($product->id, "product_cat");
@@ -420,12 +475,17 @@ function eksell_the_archive_filter()
                         ),
                         "order" => "asc",
                         "meta_key" => "_scat"
+                        /* "meta_query" => array(
+                            "key" => "_cat",
+                            "value" => $term->slug,
+                            "compare" => "="
+                            )*/
                     ));
                     $is_first = $siblings[0]->id == $product->id;
                 }
 
                 if ($is_first) {
-                    echo "<a class=\"sg-category-breadcrumb\" href=\"" . wc_get_page_permalink("shop") . "\"><p><span>&#10094</span>Tienda</p></a>";
+                    # echo "<a class=\"sg-category-breadcrumb\" href=\"" . wc_get_page_permalink("shop") . "\"><p><span>&#10094</span>Tienda</p></a>";
                     echo "<h1 class=\"sg-category-title\">" . esc_html($term->name) . "</h1>";
                 }
             }
@@ -439,11 +499,12 @@ function eksell_the_archive_filter()
                         "title" => "asc"
                     ),
                     "order" => "asc",
-                    "meta_query" => array(
+                    "meta_key" => "_scat"
+                    /* "meta_query" => array(
                         "key" => "_scat",
                         "value" => $term->slug,
-                        "compate" => "="
-                    )
+                        "compare" => "="
+                        ) */
                 ));
 
                 $is_first = true;
