@@ -562,6 +562,11 @@ header.entry-header hr.color-accent {
     // margin-top: var(--sg-sticky-filters-height);
     // padding-top: 1.2rem;
     padding-top: .8rem;
+    background-image: url(/wp-content/uploads/2021/07/shop-header-chunk.png);
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: center;
+    height: 150px;
 }
 
 .site-main[role="main"] {
@@ -693,10 +698,7 @@ header.entry-header hr.color-accent {
     clear: both;
     color: #666;
     font-weight: 400;
-}
-
-.sg-subcategory-title:nth-child(2) {
-    margin-top: 2rem;
+    margin-top: 0px;
 }
 
 .sg-category-title {
@@ -705,11 +707,19 @@ header.entry-header hr.color-accent {
     clear: both;
 }
 
+.sg-subcategory-title:nth-child(2) {
+    // margin-top: 2rem;
+}
+
 .sg-subcategory-title:nth-child(3) {
     margin-top: 0px;
 }
 
 @media only screen and (max-width: 700px) and (orientation: portrait) {
+    .sg-subcategory-title {
+        font-size: 2.2rem;
+    }
+
     .woocommerce ul.products.columns-4 li.product {
         margin: 0 10% 2em;
         width: 80%;
@@ -757,10 +767,23 @@ header.entry-header hr.color-accent {
 .sg-woocommerce-categories-menu {
     list-style: none;
     margin: 0 auto 5rem;
-    box-shadow: 0px 10px 15px -18px #aaa;
+    // box-shadow: 0px 10px 15px -18px #aaa;
     text-align: center;
-    padding: 0 2rem;
-    width: 60%;
+    // padding: 0 2rem;
+    // width: 60%;
+    width: 100%;
+    display: flex;
+}
+
+.sg-woocommerce-categories-menu__span {
+    flex: 1;
+    height: 17px;
+    // background-color: #000000;
+    margin: auto;
+    background-image: url(/wp-content/uploads/2021/07/shop-header-strip.png);
+    background-repeat: repeat-x;
+    background-size: contain;
+    background-position: left;
 }
 
 /** .sg-woocommerce-subcategories-menu {
@@ -806,6 +829,16 @@ header.entry-header hr.color-accent {
 /** .sg-woocommerce-categories-menu__item:hover .sg-woocommerce-subcategories-menu {
     display: block;
 } */
+
+@media only screen and (max-width: 700px) and (orientation: portrait) {
+    .sg-woocommerce-categories-menu {
+        width: 100%;
+    }
+
+    .sg-woocommerce-categories-menu__item {
+        padding: .2rem 1rem;
+    }
+}
 
 .attachment-woocommerce_thumbnail {
     border-radius: 50%;

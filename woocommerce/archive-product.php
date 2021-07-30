@@ -37,9 +37,9 @@ do_action('woocommerce_before_main_content');
     $cat = get_query_var("product_cat");
     if (!$cat || true) : ?>
       <div class="woocommerce-products-header__title sg-woocommerce-products-header__title page-title">
-        <a href="<?= get_permalink(woocommerce_get_page_id('shop')); ?>">
+        <!-- <a href="<?= get_permalink(woocommerce_get_page_id('shop')); ?>">
           <h1>la Tienda</h1>
-        </a>
+        </a> -->
       </div>
     <?php endif;
 

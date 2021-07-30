@@ -325,6 +325,7 @@ function eksell_the_archive_filter()
         }));
         if ($terms) {
             echo "<ul class=\"sg-woocommerce-categories-menu\">";
+            echo "<span class=\"sg-woocommerce-categories-menu__span\"></span>";
             foreach ($terms as $term) {
                 // $children = get_term_children($term->term_id, "product_cat");
                 $is_active = $term->slug == $cat;
@@ -349,6 +350,7 @@ function eksell_the_archive_filter()
                     } */
                 echo "</li>";
             }
+            echo "<span class=\"sg-woocommerce-categories-menu__span\"></span>";
             echo "</ul>";
         }
         }
@@ -484,9 +486,10 @@ function eksell_the_archive_filter()
                     $is_first = $siblings[0]->id == $product->id;
                 }
 
-                if ($is_first) {
+                if ($is_first && sizeof($nested_terms) == 0) {
                     # echo "<a class=\"sg-category-breadcrumb\" href=\"" . wc_get_page_permalink("shop") . "\"><p><span>&#10094</span>Tienda</p></a>";
-                    echo "<h1 class=\"sg-category-title\">" . esc_html($term->name) . "</h1>";
+                    # echo "<h1 class=\"sg-category-title\">" . esc_html($term->name) . "</h1>";
+                    echo "<h5 class=\"sg-subcategory-title\">" . esc_html($term->name) . "</h5>";
                 }
             }
 
