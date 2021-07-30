@@ -445,9 +445,10 @@ function eksell_the_archive_filter()
         function sg_shop_loop()
         {
             $cat = get_query_var("product_cat");
-            /* if ($cat == null) {
+            if ($cat == null) {
                 return;
-                } */
+            }
+
             global $product;
             sg_sync_on_product_save($product->id);
             $terms = get_the_terms($product->id, "product_cat");
