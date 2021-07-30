@@ -297,4 +297,18 @@ add_action("woocommerce_after_shop_loop", "sg_after_shop_loop");
 function sg_after_shop_loop () {
     echo "<div class=\"sg-woocommerce-global-message\"><p>Todos los productos de esta tienda están elaborados fuera de la industria, cada pieza es única y exclusiva que esta concebida y elaborada como una pequeña escultura. A cada una me he entregado con insistencia para procurarle alma.</p></div>";
 }
+
+
+/*CANVIS PAU*/
+/*Treiem les pestanyes de valoracions i descripció de sota */
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+/*Treiem les etiquetes de categoria i element*/
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+/*Eliminem els related products*/
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10 );
+remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 ?>

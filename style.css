@@ -532,7 +532,7 @@ header.entry-header hr.color-accent {
 
 
 .woocommerce-products-header {
-    // height: var(--sg-sticky-filters-height);
+    height: var(--sg-sticky-filters-height);
     padding-top: 1.2rem;
 }
 
@@ -619,4 +619,62 @@ header.entry-header hr.color-accent {
 
 .woocommerce-loop-product__title {
     color: var(--eksell-primary-color);
+}
+
+/*CANVIS PAU*/
+/*canvis en la VISTA DE PRODUCTE*/
+.woocommerce div.product{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.woocommerce div.product div.images .woocommerce-product-gallery__wrapper{
+    width: 70%;
+    margin-left: 20%;
+}
+
+.woocommerce div.product div.images img{
+    width:100%;
+    margin-bottom: 1%;
+    margin-right: 1%;
+    
+}
+.woocommerce div.product div.summary{
+    width: 35%;
+    margin-left: 5%;
+    
+}
+.woocommerce div.product p.price, .woocommerce div.product span.price{
+    margin-top: 2%;
+    color: #000;
+    font-weight: bold;
+}
+.woocommerce div.product .stock{
+    color: #000;
+}
+
+p {
+    font-size: 0.10 pt;
+}
+
+
+h1.entry-title {
+    font-size: 3rem;
+    
+}
+
+/*CARRITO*/
+.woocommerce table.shop_table{
+border: none;
+}
+.woocommerce table.shop_table th{
+    border: none;
+}
+.woocommerce table.shop_table td{
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+.woocommerce-cart table.cart img{
+    width: 70px;
 }
