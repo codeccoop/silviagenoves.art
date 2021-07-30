@@ -30,34 +30,29 @@ get_header('shop');
 do_action('woocommerce_before_main_content');
 
 ?>
-<header class="woocommerce-products-header">
-    <?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
-        <h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
-    <?php endif;
-    $cat = get_query_var("product_cat");
-    if (!$cat)  { ?>
-      <div class="woocommerce-products-header__title sg-woocommerce-products-header__title page-title">
-        <!-- <a href="<?= get_permalink(woocommerce_get_page_id('shop')); ?>">
-          <h1>la Tienda</h1>
-        </a> -->
-      </div>
-    <?php } else { ?>
-      <div class="woocommerce-products-header__title sg-woocommerce-products-header__title page-title">
-        <!-- <a href="<?= get_permalink(woocommerce_get_page_id('shop')); ?>">
-          <h1>la Tienda</h1>
-        </a> -->
-      </div>
-    <?php }
+<a href="<?= get_permalink(woocommerce_get_page_id('shop')); ?>">
+    <header class="woocommerce-products-header">
+        <?php if (apply_filters('woocommerce_show_page_title', true)) : ?>
+            <h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
+        <?php endif;
+        $cat = get_query_var("product_cat");
+        if (!$cat) { ?>
+            <div class="woocommerce-products-header__title sg-woocommerce-products-header__title page-title">
+            </div>
+        <?php } else { ?>
+            <div class="woocommerce-products-header__title sg-woocommerce-products-header__title page-title"></div>
+        <?php }
 
-    /**
-     * Hook: woocommerce_archive_description.
-     *
-     * @hooked woocommerce_taxonomy_archive_description - 10
-     * @hooked woocommerce_product_archive_description - 10
-     */
-    do_action('woocommerce_archive_description');
-    ?>
-</header>
+        /**
+         * Hook: woocommerce_archive_description.
+         *
+         * @hooked woocommerce_taxonomy_archive_description - 10
+         * @hooked woocommerce_product_archive_description - 10
+         */
+        do_action('woocommerce_archive_description');
+        ?>
+    </header>
+</a>
 <?php
 if (woocommerce_product_loop()) {
 

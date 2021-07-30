@@ -285,7 +285,12 @@ function eksell_the_archive_filter()
         add_action("woocommerce_before_shop_loop", "sg_before_shop_loop");
         function sg_before_shop_loop()
         {
-            echo sg_woocommerce_shop_menu();
+            $cat = get_query_var("product_cat");
+            if ($cat) {
+                echo sg_woocommerce_page_menu();
+            } else {
+                echo sg_woocommerce_shop_menu();
+            }
         }
 
         function sg_woocommerce_shop_menu ()
@@ -317,7 +322,7 @@ function eksell_the_archive_filter()
         <?php }
         }
 
-        /* function sg_woocommerce_shop_menu () {
+        function sg_woocommerce_page_menu () {
         $cat = get_query_var("product_cat");
 
         $terms = array_values(array_filter(get_terms("product_cat", array()), function ($term) {
@@ -342,7 +347,7 @@ function eksell_the_archive_filter()
             echo "<span class=\"sg-woocommerce-categories-menu__span\"></span>";
             echo "</ul>";
         }
-        } */
+        }
 
         function sg_get_category_thumbnail($term)
         {
@@ -520,6 +525,8 @@ function eksell_the_archive_filter()
         {
             echo "<div class=\"sg-woocommerce-global-message\"><p>Todos los productos de esta tienda están elaborados fuera de la industria, cada uno es único, exclusivo y esta realizado manualmente. En cada producto me he entregado, y no me he detenido hasta lograr verle alma.</p></div>";
         }
+
+remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
 
 /*CANVIS PAU*/
 /*Treiem les pestanyes de valoracions i descripció de sota */
