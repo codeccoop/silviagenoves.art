@@ -633,7 +633,8 @@ header.entry-header hr.color-accent {
     margin-left: 20%;
 }
 
-.woocommerce div.product div.images img{
+.woocommerce div.product div.images img, 
+.woocommerce div.product div.images .woocommerce-product-gallery__image{
     width:100%;
     margin-bottom: 1%;
     margin-right: 1%;
