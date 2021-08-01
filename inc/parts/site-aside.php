@@ -38,6 +38,9 @@
             <div class="site-description color-secondary"><?php echo $site_description; ?></div>
         <?php endif; ?>
     </div>
+<?php if (is_woocommerce())  {
+            sg_woocommerce_go_to_cart();
+        } ?>
     <div class="site-aside-menu">
         <ul class="main-menu reset-list-style">
             <?php

@@ -282,6 +282,23 @@ function eksell_the_archive_filter()
         remove_action("woocommerce_before_shop_loop", "woocommerce_result_count", 20);
         remove_action("woocommerce_sidebar", "woocommerce_get_sidebar", 10);
 
+        add_action("woocommerce_before_main_content", "sg_before_main_content", 20);
+        add_action("woocommerce_before_checkout_form", "sg_before_main_content", 5);
+        add_action("woocommerce_before_cart", "sg_before_main_content", 5);
+        add_action("woocommerce_cart_is_empty", "sg_before_main_content", 4);
+        add_action("woocommerce_before_thankyou", "sg_before_main_content", 5);
+
+        function sg_before_main_content () {
+                echo "<a href=\"" . get_permalink(woocommerce_get_page_id('shop')) . "\">";
+                    echo "<header class=\"sg-woocommerce-shop-header\"></header>";
+                echo "</a>";
+
+                $product = get_query_var("product");
+                if ($product) {
+                    sg_woocommerce_page_menu();
+                }
+        }
+
         add_action("woocommerce_before_shop_loop", "sg_before_shop_loop");
         function sg_before_shop_loop()
         {
@@ -380,6 +397,17 @@ function eksell_the_archive_filter()
         function woocommerce_template_loop_add_to_cart($args = array())
         {
         }
+
+function sg_woocommerce_go_to_cart () {
+    # ob_start();
+    $count = WC()->cart->cart_contents_count;
+
+    echo '<a class="cart-contents" href="' . WC()->cart->get_cart_url() . '">Tu carrito';
+    if ($count > 0) {
+        echo '<span class="cart-contents-count">' . esc_html($count) . '</span>';
+    }
+    echo '</a>';
+}
 
         add_action("woocommerce_product_query", "sg_product_query", 10, 2);
         function sg_product_query($q, $query)
