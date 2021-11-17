@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js<?php if (eksell_has_aside()) echo ' has-aside'; ?>" <?php language_attributes(); ?>>
+<html class="no-js" <?php language_attributes() ?>>
 
 <head>
 
