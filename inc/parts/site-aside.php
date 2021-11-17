@@ -46,7 +46,8 @@
             <?php
             sg_aside_filters();
             wp_list_pages(array(
-                "match_menu_classes" => true,
+                // "match_menu_classes" => true,
+                "exclude" => "576,577",
                 "title_li" => false
             ));
             ?>

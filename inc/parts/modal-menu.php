@@ -1,66 +1,67 @@
 <div class="menu-modal cover-modal" data-modal-target-string=".menu-modal" aria-expanded="false">
 
-	<div class="menu-modal-cover-untoggle" data-toggle-target=".menu-modal" data-toggle-screen-lock="true" data-toggle-body-class="showing-menu-modal" data-set-focus="#site-aside .nav-toggle"></div>
+    <div class="menu-modal-cover-untoggle" data-toggle-target=".menu-modal" data-toggle-screen-lock="true" data-toggle-body-class="showing-menu-modal" data-set-focus="#site-aside .nav-toggle"></div>
 
-	<div class="menu-modal-inner modal-inner bg-menu-modal-background color-menu-modal-text">
+    <div class="menu-modal-inner modal-inner bg-menu-modal-background color-menu-modal-text">
 
-		<div class="modal-menu-wrapper">
+        <div class="modal-menu-wrapper">
 
-			<div class="menu-modal-toggles">
+            <div class="menu-modal-toggles">
 
-				<a href="#" class="toggle nav-untoggle" data-toggle-target=".menu-modal" data-toggle-screen-lock="true" data-toggle-body-class="showing-menu-modal" aria-pressed="false" role="button" data-set-focus="#site-aside .nav-toggle">
-					<span class="screen-reader-text"><?php esc_html_e( 'Close', 'eksell' ); ?></span>
-					<?php eksell_the_theme_svg( 'ui', 'close', 18, 18 ); ?>
-				</a><!-- .nav-untoggle -->
+                <a href="#" class="toggle nav-untoggle" data-toggle-target=".menu-modal" data-toggle-screen-lock="true" data-toggle-body-class="showing-menu-modal" aria-pressed="false" role="button" data-set-focus="#site-aside .nav-toggle">
+                    <span class="screen-reader-text"><?php esc_html_e('Close', 'eksell'); ?></span>
+                    <?php eksell_the_theme_svg('ui', 'close', 18, 18); ?>
+                </a><!-- .nav-untoggle -->
 
-			</div><!-- .menu-modal-toggles -->
+            </div><!-- .menu-modal-toggles -->
 
-			<div class="menu-top">
+            <div class="menu-top">
 
-				<?php
-				do_action( 'eksell_menu_modal_top_start' );
-				?>
+                <?php
+                do_action('eksell_menu_modal_top_start');
+                ?>
 
-				<ul class="main-menu reset-list-style">
-					<?php
-                         sg_aside_filters();
-                         wp_list_pages(array(
-							'match_menu_classes' => true,
-							'title_li' => false,
-						 ));
-					?>
-				</ul><!-- .main-menu -->
+                <ul class="main-menu reset-list-style">
+                    <?php
+                    sg_aside_filters();
+                    wp_list_pages(array(
+                        // 'match_menu_classes' => true,
+                        "exclude" => "576,577",
+                        'title_li' => false,
+                    ));
+                    ?>
+                </ul><!-- .main-menu -->
 
-				<?php
-				if ( get_theme_mod( 'eksell_enable_search', true ) ) :
-					?>
-					<div class="menu-modal-search">
-						<?php get_search_form(); ?>
-					</div><!-- .menu-modal-search -->
-					<?php
-				endif;
-				do_action( 'eksell_menu_modal_top_end' );
-				?>
+                <?php
+                if (get_theme_mod('eksell_enable_search', true)) :
+                ?>
+                    <div class="menu-modal-search">
+                        <?php get_search_form(); ?>
+                    </div><!-- .menu-modal-search -->
+                <?php
+                endif;
+                do_action('eksell_menu_modal_top_end');
+                ?>
 
-			</div><!-- .menu-top -->
+            </div><!-- .menu-top -->
 
-			<div class="menu-bottom">
+            <div class="menu-bottom">
 
-				<?php
-				do_action( 'eksell_menu_modal_bottom_start' );
-				
-				// Output the social menu, if set
-				eksell_the_social_menu( array(
-					'menu_class'	=> 'social-menu reset-list-style social-icons circular',
-				) );
+                <?php
+                do_action('eksell_menu_modal_bottom_start');
 
-				do_action( 'eksell_menu_modal_bottom_end' );
-				?>
+                // Output the social menu, if set
+                eksell_the_social_menu(array(
+                    'menu_class'    => 'social-menu reset-list-style social-icons circular',
+                ));
 
-			</div><!-- .menu-bottom -->
+                do_action('eksell_menu_modal_bottom_end');
+                ?>
 
-		</div><!-- .menu-wrapper -->
+            </div><!-- .menu-bottom -->
 
-	</div><!-- .menu-modal-inner -->
+        </div><!-- .menu-wrapper -->
+
+    </div><!-- .menu-modal-inner -->
 
 </div><!-- .menu-modal -->
