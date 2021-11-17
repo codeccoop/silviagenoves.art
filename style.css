@@ -140,11 +140,15 @@
 	--eksell-menu-modal-text-color: var(--eksell-primary-color);
 	/* Layout */
 	--eksell-aside-width: 200px;
-        --eksell-inner-width-thin: 75rem;
+  	--eksell-inner-width-thin: 75rem;
   	/* Custom */
   	--sg-sticky-filters-height: 125px;
   	--sg-portrait-header-height: 85px;
-    --woocommerce-accent-color: #00ccff;
+  	--woocommerce-accent-color: #00ccff;
+}
+
+html:not(.has-aside) {
+    --eksell-aside-width: 200px;
 }
 
 body {
@@ -400,7 +404,8 @@ body.admin-bar header.archive-header {
 
 .page.status-publish .post-inner,
 .post.status-publish .featured-media {
-    margin-top: 3.5rem;
+    // margin-top: 3.5rem;
+    margin-top: 0px;
 }
 
 @media only screen and (max-width: 700px) and (orientation: portrait) {
@@ -677,7 +682,7 @@ body.woocommerce-page .header-toggles .mobile-nav-toggle {
     background-repeat: repeat-x;
     background-position: center;
     height: 60px;
-    margin: 1.8rem 0 1rem;
+    margin: 1.5rem 0 1rem;
 }
 
 .site-main[role="main"] {
