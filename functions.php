@@ -118,7 +118,7 @@ function eksell_the_archive_filter()
                 "taxonomy" => "category"
             )));
 
-            $terms_order = array("fotografia", "espectaculos", "plastica", "joyeria");
+            $terms_order = array("fotografia", "espectaculos", "plastica", "joyeria", "video");
             $nested_terms_order = array("oro-plata-y-piedras preciosas", "resina", "resina-y-plata", "resina-y-piedras-semipreciosas");
 
             $terms = array();
@@ -564,5 +564,4 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_p
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
 /*Eliminem els related products*/
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
-
 ?>
